@@ -1,0 +1,22 @@
+{
+  "name": "serverless-demo",
+  "version": "1.0.0",
+  "description": "This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidconde/aws-sam-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidconde/aws-sam-demo/issues"
+  },
+  "homepage": "https://github.com/davidconde/aws-sam-demo#readme",
+  "dependencies": {
+    "jest": "^24.9.0"
+  }
+}
