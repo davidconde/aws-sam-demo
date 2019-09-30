@@ -1,3 +1,4 @@
+const { ResponseUtil, BodyParser } = require('dcm-lambda-utils');
 const emailValidator = require('./email-validator');
 
 /**
@@ -15,22 +16,19 @@ const emailValidator = require('./email-validator');
 exports.emailHandler = async (event, context) => {
     try {
         
-        const postedBody = event && event.body ? JSON.parse(event.body) : {};
-        const email = postedBody && postedBody.email ? postedBody.email : "";
+        const body = BodyParser(event);
 
-        const validationResponse = emailValidator(email);
+        if (body === null)
+            return ResponseUtil.Error(400, { error: true, message: "Invalid request" });
 
-        response = {
-            'statusCode': 200,
-            'body': JSON.stringify({
-                email: email,
-                result: validationResponse
-            })
-        }
+        const validationResponse = emailValidator(body.email);
+
+        return ResponseUtil.OK({
+            email: body.email,
+            result: validationResponse
+        });
     } catch (err) {
         console.log(err);
-        return err;
+        return ResponseUtil.Error(500, { error: err });
     }
-
-    return response
 };
