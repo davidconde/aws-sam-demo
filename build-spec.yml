@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+        nodejs: 10
+  build:
+    commands:
+      - npm --prefix ./src/hello-world install
+      - export BUCKET=aws-sam-demo-deployment-bucket
+      - aws cloudformation package --template-file ./src/template.yaml --s3-bucket $BUCKET --output-template-file ./src/outputtemplate.yaml
+artifacts:
+  files:
+    - ./src/template.yaml
+    - ./src/outputtemplate.yaml
+  discard-paths: yes
+  disable-artifact-encryption: yes
