@@ -23,6 +23,21 @@ Resources:
           Properties:
             Path: /hello
             Method: get
+  
+  # Things to realise:
+  # Handler is index.emailHandler -> file with entry point is now called index and the function is called emailHandler
+  EmailValidatorFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: email-format/
+      Handler: index.emailHandler
+      Runtime: nodejs10.x
+      Events:
+        HelloWorld:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /email-validate
+            Method: post
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
