@@ -82,6 +82,9 @@ typings/
 .AppleDouble
 .LSOverride
 
+#SAM specific 
+packaged.yml
+
 # Icon must end with two \r
 Icon
 
